@@ -1,0 +1,33 @@
+public class rosterClass {
+    
+    public List<User> U {get;set;}
+    public List<User> searchValue {get;set;}
+    public String searchKey {get;set;}
+
+    
+    public rosterClass(ApexPages.StandardController Controller) {
+    
+        U =  [SELECT Id, FirstName, LastName, Branch__c, MobilePhone, Email, UserRole.Name 
+              FROM User 
+              WHERE IsActive = true AND LastName != 'Admin1' AND LastName != 'Admin' AND LastName != 'Admin2' AND LastName != 'Platform Integration User' AND LastName != 'Site Guest User' AND LastName != 'System' AND LastName != 'Chatter Expert' AND LastName != 'User' AND LastName != 'Data.com Clean' AND LastName != 'Process' AND LastName != 'Test'
+              ORDER BY FirstName];
+
+        
+    }
+    
+    public void rosterSearch(){
+                
+        U =  [SELECT Id, FirstName, LastName, Branch__c, MobilePhone, Email, UserRole.Name 
+              FROM User 
+              WHERE IsActive = true AND LastName != 'Admin1' AND LastName != 'Admin' AND LastName != 'Admin2' AND LastName != 'Platform Integration User' AND LastName != 'Site Guest User' AND LastName != 'System' AND LastName != 'Chatter Expert' AND LastName != 'User' AND LastName != 'Data.com Clean' AND LastName != 'Process' AND LastName != 'Test'
+              AND (lastName LIKE :searchKey OR FirstName LIKE :searchKey)
+              ORDER BY FirstName];
+    }
+    
+    public void refreshTable(){
+        U =  [SELECT Id, FirstName, LastName, Branch__c, MobilePhone, Email, UserRole.Name 
+              FROM User 
+              WHERE IsActive = true AND LastName != 'Admin1' AND LastName != 'Admin' AND LastName != 'Admin2' AND LastName != 'Platform Integration User' AND LastName != 'Site Guest User' AND LastName != 'System' AND LastName != 'Chatter Expert' AND LastName != 'User' AND LastName != 'Data.com Clean' AND LastName != 'Process' AND LastName != 'Test'
+              ORDER BY FirstName];
+    }
+}

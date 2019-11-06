@@ -1,0 +1,49 @@
+<apex:page standardController="User" extensions="rosterClass" showHeader="false" sidebar="false">
+    <apex:form >
+        
+        <apex:pageBlock html-style="font-size: 13px;" title="User information" id="contacts_list">
+            <p style="color:red; font-size:15px;">
+    You will not be able to access user records, This option is only reserved for System Admins.
+    </p>
+            <p>Use the person last name</p>
+            <apex:pageBlockSection >
+                <apex:commandButton value="Search" action="{!rosterSearch}">
+                	<apex:inputText value="{!searchKey}" style="width:500px"/>
+                </apex:commandButton>
+                <apex:commandButton value="Refresh" action="{!refreshTable}" rerender="tableInfo"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!U}" var="User" id="tableInfo">
+                <apex:column >
+                    <apex:facet name="header">Last Name</apex:facet>
+                    <apex:outputLink value="https://1stclassrealestate123.lightning.force.com/lightning/r/User/{!User.id}/view">
+                        <apex:outputText value="{!User.lastName}"/>
+                    </apex:outputLink>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">First Name</apex:facet>
+                    <apex:outputText value="{!User.firstName}"/>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Branch</apex:facet>
+                    <apex:outputText value="{!User.Branch__c}"/>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Phone #</apex:facet>
+                    <apex:outputText value="{!User.MobilePhone}"/>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Email</apex:facet>
+                    <apex:outputText value="{!User.email}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Role</apex:facet>
+                    <apex:outputText value="{!User.userRole.Name}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

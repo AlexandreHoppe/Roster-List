@@ -1,0 +1,37 @@
+@isTest
+private class rosterTestClass{
+    static testMethod void validateRoster(){
+    test.StartTest();
+        PageReference Page;
+        
+        
+    
+        User u = new user(
+            LastName = 'TestCode',
+            Email = 'techsupport@blank.com',
+            MobilePhone = '419-551-2454',
+            ProfileId = UserInfo.getProfileId(),
+            Branch__c = 'Great Neck',
+            Alias = 'Tcode',
+            Username = 'thisisatest123ncphp@Blank.com',
+            CommunityNickname = 'test12',
+            LocaleSidKey = 'en_US',
+            TimeZoneSidKey = 'GMT',
+            LanguageLocaleKey = 'en_US',
+            EmailEncodingKey = 'UTF-8'
+        );
+        insert u;
+        
+        page = new PageReference('apex/Roster');
+        RosterClass Rost = New RosterClass(new ApexPages.StandardController(u));
+        //Rost.rosterClass();
+        Rost.rosterSearch();
+        
+        
+        
+       
+        
+        Test.stopTest();
+            
+    }
+}
